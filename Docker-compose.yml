@@ -1,0 +1,21 @@
+  version: '3.8' #Указываем версию
+
+
+  services: #Описание сервиса
+    app: #Описания приложения
+      build: . #Собираем образ из Dockerfile
+      ports: #Вешаем порт
+        - "8080:8080"
+      depends_on: #Запуск после бд
+        - db
+      environment: #Создаем перменные окружения
+        - DB_PASS=${DB_PASS}
+
+    db: #Описание бд
+      image: postgres:16-alpine #Образ
+      environment: #переменные окружения
+        POSTGRES_USER: postgres #Пользователь
+        POSTGRES_PASSWORD: ${DB_PASS} #Прокидываем пароль из .env
+        POSTGRES_DB: taskapi #Имя бд
+      ports: #Прокидываем порт
+        - "5432:5432"
