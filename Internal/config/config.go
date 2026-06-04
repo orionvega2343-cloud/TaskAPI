@@ -16,7 +16,7 @@ type DB struct {
 }
 
 type Config struct {
-	Password string `env:"password"`
+	Password string `env:"DB_PASS"`
 	DB       DB     `yaml:"db"`
 }
 
