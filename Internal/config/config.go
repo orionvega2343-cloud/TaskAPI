@@ -7,6 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+//DB config
 type DB struct {
 	Port   int    `yaml:"port"`
 	Host   string `yaml:"host"`
@@ -15,11 +16,13 @@ type DB struct {
 	SSLMod string `yaml:"ssl_mode"`
 }
 
+
+//Config
 type Config struct {
 	Password string `env:"DB_PASS"`
 	DB       DB     `yaml:"db"`
 }
-
+//Load config
 func MustLoad() *Config {
 	//Read env
 	err := godotenv.Load(".env")
